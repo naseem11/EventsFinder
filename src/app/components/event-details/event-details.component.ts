@@ -12,7 +12,7 @@ import {   ActivatedRoute } from '@angular/router';
 export class EventDetailsComponent implements OnInit {
 
   event: any;
-  showVenue = false;
+  showMap = false;
   constructor(private eventSr: EventService, private route: ActivatedRoute) { }
 
 
