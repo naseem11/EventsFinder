@@ -1,6 +1,6 @@
 export class DatesHelper {
 
-static farmatDate(date: Date): string {
+static formatDate(date: Date): string {
 
     const formatedDate = date.toISOString();
    const dateStringtoArray = formatedDate.split('');

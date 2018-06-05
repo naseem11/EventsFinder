@@ -16,7 +16,7 @@ import { OrderBy } from '../shared/orderby.pipe';
 import { EventDetailsResolver } from './services/eventDetailsResolver.sevice';
 import { AgmMapComponent } from './components/agm-map/agm-map.component';
 import {AgmCoreModule} from '@agm/core';
-import { GoogleMap } from '../shared/google.map';
+import { Config } from '../shared/config';
 
 
 
@@ -38,7 +38,7 @@ import { GoogleMap } from '../shared/google.map';
     RouterModule.forRoot(routes),
     FormsModule,
     AgmCoreModule.forRoot({
-      apiKey: GoogleMap.info
+      apiKey: Config.googleKey
     })
   ],
   providers: [EventService, EventDetailsResolver],
