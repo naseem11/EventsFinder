@@ -9,7 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "deploy:gh":"ng build --prod --base-href='https://nasemm11.github.io/events-finder/' && ngh"
+    "deploy:gh":"ng build --prod --base-href='https://naseem11.github.io/events-finder/' && ngh"
   },
   "private": true,
   "dependencies": {
