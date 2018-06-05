@@ -1,0 +1,16 @@
+.btn-orange{
+
+   color:black !important;
+    background:orange;
+}
+.btn-orange:hover,
+.btn-orange:active{
+
+    background:orange;
+}
+
+span{
+
+    font-weight: bold;
+}
+

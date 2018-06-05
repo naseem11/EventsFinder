@@ -1,0 +1,15 @@
+.card{
+    border:none;
+    background:#f2f2f2;
+}
+
+
+.card:hover{
+
+    background-color:#151841;
+    color:white ;
+    cursor: pointer;
+}
+
+
+

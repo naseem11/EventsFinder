@@ -1,0 +1,23 @@
+<h2 class=" mx-auto my-5 underline">{{keyword | titlecase}} Events</h2>
+
+<div class="w-25 mx-auto">
+  <div class="btn-group mt-4 pl-5" >
+      <button type="button" [class.active] ="sortBy==='name'" class="btn btn-primary" (click)="sortBy='name'">By Name</button>
+      <button type="button" [class.active] ="sortBy==='date'" class="btn btn-primary" (click)="sortBy='date'">By Date</button>
+      
+  </div>
+</div>
+    <div class="row mt-5">
+          
+           <div *ngFor="let event of events$|async|orderBy:sortBy" class="col-md-6 col-lg-4 ">
+            
+           
+              <app-event (click)='onSelection(event)' [event]="event" ></app-event>
+           
+          
+      </div>
+    
+     
+   </div>
+ 
+ 

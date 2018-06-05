@@ -1,0 +1,36 @@
+.navbar{
+    background-color:#151841;
+    
+}
+
+.navbar-brand,
+.navbar-brand:hover,
+.navbar-brand:visited{
+
+    font-size:1.8rem;
+    color:white;
+ 
+}
+
+
+
+
+
+.nav-item{
+
+    font-size:1.2rem;
+   
+}
+a.nav-link{
+
+   font-weight: 300 !important;
+    color:#fff!important;
+
+}
+
+.active{
+
+    border-bottom: 1px solid orange;
+     
+ }
+
