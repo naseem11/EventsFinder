@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import {HttpModule} from '@angular/http';
 import {RouterModule} from '@angular/router';
 import {FormsModule} from '@angular/forms';
+import {ToastModule} from 'ng2-toastr/ng2-toastr';
+import {BrowserAnimationsModule} from'@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -17,6 +19,7 @@ import { EventDetailsResolver } from './services/eventDetailsResolver.sevice';
 import { AgmMapComponent } from './components/agm-map/agm-map.component';
 import {AgmCoreModule} from '@agm/core';
 import { Config } from '../shared/config';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 
 
@@ -30,7 +33,8 @@ import { Config } from '../shared/config';
     EventComponent,
     EventDetailsComponent,
     OrderBy,
-    AgmMapComponent
+    AgmMapComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +43,9 @@ import { Config } from '../shared/config';
     FormsModule,
     AgmCoreModule.forRoot({
       apiKey: Config.googleKey
-    })
+    }),
+    BrowserAnimationsModule,
+    ToastModule.forRoot()
   ],
   providers: [EventService, EventDetailsResolver],
   bootstrap: [AppComponent]

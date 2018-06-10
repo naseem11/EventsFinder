@@ -1,17 +1,16 @@
-<nav class="navbar navbar-light navbar-expand-md py-3 sticky-top  ">
+<nav class="navbar navbar-light navbar-expand-md py-3  ">
   <div class="container">
 
     <a routerLink='' class="navbar-brand">
       <i class="fa fa-calendar base-color"> </i>
-      <span class='White'>Events</span>
-      <span class="base-color">Finder</span>
+      <span class='White'>Events</span><span class="base-color">Finder</span>
     </a>
     <button (click)="toggleMenu()" class="navbar-toggler custom-toggler  hidden-lg-up" type="button" data-toggle="collapse" data-target="#appNavbar"
       aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" [class.show]="showMenu" id="appNavbar">
-      <ul class="navbar-nav ml-auto ">
+      <ul class="navbar-nav ml-auto" (click)="toggleMenu()" >
         <li class="nav-item pl-3">
           <a class="nav-link" routerLink='/events/music' routerLinkActive="active">
             <i class="base-color fa fa-music"></i> Music </a>

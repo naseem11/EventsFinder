@@ -1,50 +1,74 @@
-<div class="row " style="background: #fff; margin-top:8rem;">
-    <div class="col-md-4 d-flex flex-column">
-        <img [src]="getImgUrl()" alt="" style="margin-top:-40px;">
-        <p class="mt-5">
-            <span>Tickets : </span>
-            <span class="text-success lead font-weight-normal" [class.text-danger]="event.dates.status.code==='offsale'"> {{event.dates.status.code | titlecase}}</span>
-        </p>
-
-        <a *ngIf="event.dates.status.code==='onsale'" [href]="event.url" target="_blank" class="btn btn-orange btn-block mt-auto mb-3 ">Buy Ticket(s)</a>
-
+<div *ngIf="event">
+    <div  class="row pb-3" style="background: #fff; margin-top:8rem;">
+        <div class="col-md-4 d-flex flex-column">
+            <img [src]="getImgUrl()" alt="Event image" style="margin-top:-40px;">
+            <!-- only visible on small devices -->
+            <div class="d-md-none">
+                <h3 class=" py-3 font-weight-normal  ">{{event.name}}</h3>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item  font-weight-bold">
+                        <span class="base-color">{{event.dates.start.localDate |date : 'fullDate'}}</span>
+                        <p class="lead mt-2">{{event.dates.start.dateTime |date:'shortTime'}}</p>
+                    </li>
+                    <li class="list-group-item" (click)="showMap=!showMap" style="cursor: pointer;">
+                        <span>Venue</span> : {{event._embedded.venues[0].name}} ({{event._embedded.venues[0].city.name}})
+                        <img src="https://png.icons8.com/color/50/000000/google-maps.png" style="width:30px;" class="ml-5">
+                    </li>
+    
+                    <li class="list-group-item">
+                        <span>Address</span> : {{event._embedded.venues[0].address.line1}}</li>
+                    <li class="list-group-item">
+                        <span>Category </span>: {{event.classifications[0].segment.name}}</li>
+                    <li class="list-group-item">
+                        <span>Genre </span>: {{event.classifications[0].genre.name}}</li>
+                </ul>
+            </div>
+        <!-- ......................................................    -->
+            <p class="mt-3 pl-sm-3 pl-md-2">
+                <span>Tickets : </span>
+                <span class="text-success lead font-weight-normal"  [class.text-danger]="isOffsale()"> {{event.dates.status.code | titlecase}}</span>
+            </p>
+    
+            <a *ngIf="event.dates.status.code==='onsale'" [href]="event.url" target="_blank" class="btn btn-orange btn-block mt-auto mb-3 ">Buy Ticket(s)</a>
+    
+        </div>
+    <!-- only visible medium and above screen sizes -->
+    
+        <div class="col-md-8 d-sm-none d-md-block">
+            <h3 class=" py-3 font-weight-normal  ">{{event.name}}</h3>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item  font-weight-bold">
+                    <span class="base-color">{{event.dates.start.localDate |date : 'fullDate'}}</span>
+                    <p class="lead mt-2">{{event.dates.start.dateTime |date:'shortTime'}}</p>
+                </li>
+                <li class="list-group-item" (click)="showMap=!showMap" style="cursor: pointer;">
+                    <span>Venue</span> : {{event._embedded.venues[0].name}} ({{event._embedded.venues[0].city.name}})
+                    <img src="https://png.icons8.com/color/50/000000/google-maps.png" style="width:30px;" class="ml-5">
+                </li>
+    
+                <li class="list-group-item">
+                    <span>Address</span> : {{event._embedded.venues[0].address.line1}}</li>
+                <li class="list-group-item">
+                    <span>Category </span>: {{event.classifications[0].segment.name}}</li>
+                <li class="list-group-item">
+                    <span>Genre </span>: {{event.classifications[0].genre.name}}</li>
+            </ul>
+        </div>
+    
+        <!-- ....................................................... -->
+    
+    
     </div>
-
-    <div class="col-md-8">
-        <h3 class=" py-3 font-weight-normal  ">{{event.name}}</h3>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item  font-weight-bold">
-                <span class="base-color">{{event.dates.start.localDate |date : 'fullDate'}}</span>
-                <p class="lead mt-2">{{event.dates.start.dateTime |date:'shortTime'}}</p>
-            </li>
-            <li class="list-group-item" (click)="showMap=!showMap" style="cursor: pointer;">
-                <span>Venue</span> : {{event._embedded.venues[0].name}} ({{event._embedded.venues[0].city.name}})
-                <img src="https://png.icons8.com/color/50/000000/google-maps.png" style="width:30px;" class="ml-5">
-            </li>
-           
-            <li class="list-group-item">
-                <span>Address</span> : {{event._embedded.venues[0].address.line1}}</li>
-            <li class="list-group-item">
-                <span>Category </span>: {{event.classifications[0].segment.name}}</li>
-            <li class="list-group-item">
-                <span>Genre </span>: {{event.classifications[0].genre.name}}</li>
-        </ul>
+    
+    <!-- GOOGLE MAP -->
+    
+    <div *ngIf="showMap" class="row mt-5">
+        <div class="col-md-12 mb-5">
+    
+            <app-agm-map [title]="event._embedded.venues[0].name" [lat]="convertToNumber(event._embedded.venues[0].location?.latitude)"
+                [lng]="convertToNumber(event._embedded.venues[0].location?.longitude)"></app-agm-map>
+    
+        </div>
+    
     </div>
-
-
 </div>
-
-<!-- GOOGLE MAP -->
-
-<div *ngIf="showMap" class="row mt-5">
-    <div class="col-md-12 mb-5">
-
-        <app-agm-map [title]="event._embedded.venues[0].name" [lat]="convertToNumber(event._embedded.venues[0].location?.latitude)"
-            [lng]="convertToNumber(event._embedded.venues[0].location?.longitude)"></app-agm-map>
-
-    </div>
-
-</div>
-
-
-

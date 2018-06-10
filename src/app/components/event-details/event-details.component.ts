@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EventService } from '../../services/event.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+
 
 
 
@@ -13,16 +14,27 @@ export class EventDetailsComponent implements OnInit {
 
   event: any;
   showMap = false;
-  constructor(private eventSr: EventService, private route: ActivatedRoute) { }
+
+  constructor(private eventSr: EventService, private route: ActivatedRoute ,private router:Router){ 
+  
+  }
 
 
 
   ngOnInit( ) {
 
-    this.event = this.route.snapshot.data['event']  ;
-  //  this.event=this.eventSr.getEvent(eventID);
-  //  console.log(this.event);
+   const event=this.route.snapshot.data['event'];
+        
+    if (event ){
 
+      this.event=event;
+    }else{
+      
+       
+     this.router.navigate(['/not-found']);
+     
+    }
+  
 
 }
 
@@ -43,4 +55,14 @@ convertToNumber(numberString: string): number {
    return Number(numberString);
 }
 
+
+
+isOffsale():boolean{
+
+  return (this.event.dates.status.code==='offsale')||(this.event.dates.status.code=== 'cancelled')
 }
+
+
+
+}
+

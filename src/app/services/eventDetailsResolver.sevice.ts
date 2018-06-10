@@ -10,6 +10,7 @@ export class EventDetailsResolver implements Resolve<any> {
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
 
+        
         return this.eventSr.getEvent(route.params['id']);
 
     }

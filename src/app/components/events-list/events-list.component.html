@@ -1,21 +1,23 @@
-<h2 class="mt-5 mb-4 pl-2 underline">{{keyword | titlecase}} Events</h2>
-
-<div class="text-center ">
-    <div class="btn-group mt-4 pl-5 ">
-        <button type="button" [class.active]="sortBy==='name'" class="btn btn-primary" (click)="sortBy='name'">By Name</button>
-        <button type="button" [class.active]="sortBy==='date'" class="btn btn-primary" (click)="sortBy='date'">By Date</button>
-
+<div *ngIf="events">
+    <h2 class="mt-5 mb-4 pl-2 underline">{{keyword | titlecase}} Events</h2>
+    
+    <div class="text-center ">
+        <div class="btn-group mt-4  ">
+            <button type="button" [class.active]="sortBy==='name'" class="btn btn-primary" (click)="sortBy='name'">By Name</button>
+            <button type="button" [class.active]="sortBy==='date'" class="btn btn-primary" (click)="sortBy='date'">By Date</button>
+    
+        </div>
     </div>
-</div>
-<div class="row mt-5">
-
-    <div *ngFor="let event of events$|async|orderBy:sortBy" class="col-md-6 col-lg-4 ">
-
-
-        <app-event (click)='onSelection(event)' [event]="event"></app-event>
-
-
+    <div class="row mt-5">
+    
+        <div *ngFor="let event of events | orderBy:sortBy" class=" col-sm-6 col-md-4 col-lg-3 ">
+    
+    
+            <app-event (click)='onSelection(event)' [event]="event"></app-event>
+    
+    
+        </div>
+    
+    
     </div>
-
-
 </div>
