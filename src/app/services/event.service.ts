@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { DatesHelper } from '../../shared/dates.helper';
-import { Subject } from 'rxjs/Subject';
 import { Config } from '../../shared/config';
 
 
@@ -22,22 +21,23 @@ export class EventService {
 
   constructor(private http: Http) { }
 
-  getEvents(keyword: string) {
+  getEvents(keyword: string, pageNumber: string) {
 
-    this.url = this.getUrl(keyword);
+    this.url = this.getUrl(keyword, pageNumber);
     return this.http.get(this.url)
       .map((response: Response) => {
 
 
-        if (response.status === 200) {
 
-          if (response.json()['page']['totalElements'] === 0) {
-            return [];
+        if (response.status === 200) {
+          let resultJson = response.json();
+          if (resultJson['page']['totalElements'] === 0) {
+            return { events: [], pages: 0 };
 
           } else {
 
-            this.allEvents = response.json()['_embedded']['events'];
-            return response.json()['_embedded']['events'];
+            this.allEvents = resultJson['_embedded']['events'];
+            return { events: resultJson['_embedded']['events'], pages: resultJson['page'].totalPages, pageNumber: resultJson['page'].number };
 
 
           }
@@ -100,17 +100,25 @@ export class EventService {
 
 
 
-  private getUrl(keyword: string): string {
+  private getUrl(keyword: string, pageNumber: string): string {
 
     if (keyword === 'upcoming') {
       const startDateTime = DatesHelper.formatDate(new Date());
       const nextDate = DatesHelper.getNextDate(new Date(), 7);
       const endDateTime = DatesHelper.formatDate(nextDate);
+      if (pageNumber) {
 
+        return this.rootUrl + this.apiKey + '&startDateTime=' + startDateTime + '&endDateTime=' + endDateTime + '&page=' + pageNumber + '&countryCode=' + this.countryCode;
+      }
       return this.rootUrl + this.apiKey + '&startDateTime=' + startDateTime + '&endDateTime=' + endDateTime + '&countryCode=' + this.countryCode;
 
 
     } else {
+
+      if (pageNumber) {
+
+        return this.rootUrl + this.apiKey + '&keyword=' + keyword + '&page=' + pageNumber + '&countryCode=' + this.countryCode;
+      }
 
 
       return this.rootUrl + this.apiKey + '&keyword=' + keyword + '&countryCode=' + this.countryCode;

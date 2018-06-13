@@ -1,8 +1,12 @@
-import { Component, OnInit, OnDestroy, ViewContainerRef } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { EventService } from '../../services/event.service';
 import { Subscription } from 'rxjs/Subscription';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { ToastsManager } from 'ng2-toastr';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/combineLatest';
+
+
+
 
 @Component({
   selector: 'app-events-list',
@@ -15,53 +19,52 @@ export class EventsListComponent implements OnInit, OnDestroy {
   events: any[];
   sortBy = 'name';
   keyword = '';
+  showMessage = false;
+  errorMessage:string='';
+  numberOfPages: number;
+  currentPage:number;
+
   private paramSubscription: Subscription;
   private serviceSubscription: Subscription
 
-  constructor(private eventSr: EventService, private router: Router, private route: ActivatedRoute,public toastr: ToastsManager, vcr: ViewContainerRef) {
+  constructor(private eventSr: EventService, private router: Router, private route: ActivatedRoute) {
 
-    this.toastr.setRootViewContainerRef(vcr);
-    
-     }
+  }
 
 
 
   ngOnInit() {
 
+    const urlParams = Observable.combineLatest(this.route.params, this.route.queryParams,
+                                                (params, queryParams) => ({ ...params, ...queryParams }));
+    this.paramSubscription = urlParams.subscribe((routeParams: Params) => {
+      this.keyword = routeParams.keyword;
+      this.serviceSubscription = this.eventSr.getEvents(routeParams.keyword, routeParams.page)
+        .subscribe((results: any) => {
+          if (results.events.length === 0) {
 
+            this.events = null;
+            this.showError('Sorry ! no results to show, Please check your search term.');
+          } else {
 
-    this.paramSubscription = this.route.paramMap
-      .subscribe((params: Params) => {
-                  this.keyword = params.get('keyword');
-                  this.serviceSubscription= this.eventSr.getEvents(this.keyword)
-                  .subscribe((events: any[]) => {
-                            if (events.length === 0) {
-                              this.events=null;
-                              this.showError();
-                            } else {
+            this.events = results.events;
+            this.numberOfPages = results.pages;
+            this.currentPage=results.pageNumber;
+          }
 
-                                this.events = events;
-                              }
+        },
+          (error: Error) => {
+            this.showError('Bad request , couldn\'t find the rquested resource.' );
 
-                        },
-                        (error: Error) => {
-                            alert("An unexpected error occured !!");
-
-                            });
-
-
-
-
-      });
+          });
 
 
 
-
-
+    });
 
   }
 
- 
+
 
   ngOnDestroy() {
 
@@ -76,8 +79,19 @@ export class EventsListComponent implements OnInit, OnDestroy {
     this.router.navigate([event.id], { relativeTo: this.route });
   }
 
-  private showError() {
-    this.toastr.error('Oops!! Your search did not return any event, Please check your search term.');
+  private showError(errorText:string) {
+
+    this.showMessage = true;
+    this.errorMessage=errorText;
+    setTimeout(() => {
+      this.showMessage = false;
+    }
+      , 4000);
+  }
+
+  loadPage(pageNumber: number) {
+
+    this.router.navigate(['.'], { relativeTo: this.route, queryParams: { page: pageNumber } });
   }
 
 

@@ -8,6 +8,7 @@
     
         </div>
     </div>
+   
     <div class="row mt-5">
     
         <div *ngFor="let event of events | orderBy:sortBy" class=" col-sm-6 col-md-4 col-lg-3 ">
@@ -20,4 +21,9 @@
     
     
     </div>
+
+    <app-pager [currentPage]="currentPage" [totalPages]="numberOfPages" (pageChange)="loadPage($event)"></app-pager>
 </div>
+
+    <div *ngIf="showMessage" class="alert alert-danger w-75 mx-auto  mt-5">{{errorMessage}}       
+    </div>

@@ -12,9 +12,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class EventDetailsComponent implements OnInit {
 
-  event: any;
-  showMap = false;
-
+  event: any;  
+  mapModalIsOpen=false;
   constructor(private eventSr: EventService, private route: ActivatedRoute ,private router:Router){ 
   
   }
@@ -37,6 +36,7 @@ export class EventDetailsComponent implements OnInit {
   
 
 }
+
 
 getImgUrl() {
 
@@ -63,6 +63,23 @@ isOffsale():boolean{
 }
 
 
+showMap(open:boolean){
+ 
+  this.mapModalIsOpen=open;
+}
+
+ifExternalLinks():boolean{
+
+  return (this.event._embedded.attractions && this.event._embedded.attractions[0].externalLinks);
+}
+
+ifLink(linkName:string):boolean{
+
+  if(linkName in  this.event._embedded.attractions[0].externalLinks){
+
+    return true;
+  }
+}
 
 }
 

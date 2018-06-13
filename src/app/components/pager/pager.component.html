@@ -1,0 +1,4 @@
+<div *ngIf="totalPages>1" class="text-center my-5">
+  <button [disabled]="(currentPage <= 0)" type="button" (click)="changePage($event)" class="btn btn-info mr-5"><i class="fa fa-arrow-left"> </i> Prev</button>
+  <button [disabled]="(currentPage>=this.totalPages-1)" type="button" (click)="changePage($event)" class="btn btn-info ml-5">Next <i class="fa fa-arrow-right"> </i></button>
+</div>
