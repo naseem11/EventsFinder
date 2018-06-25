@@ -1,5 +1,5 @@
-export class Config{
+export class Config {
 
-   static googleKey:string = 'AIzaSyAGfVPmEJKeZ4wHT13PX91tsNDmrz8VMC8';
-   static ticketMasterKey:string = 'gk3gAVNdERkuKCiErDHPYHGY4e1Qliiz';
+   static googleKey = 'AIzaSyAGfVPmEJKeZ4wHT13PX91tsNDmrz8VMC8';
+   static ticketMasterKey = 'gk3gAVNdERkuKCiErDHPYHGY4e1Qliiz';
 }

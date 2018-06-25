@@ -1,22 +1,12 @@
-<div class="card mb-sm-3 ">
-    <div class="card-body">
 
-      
-           
-        <img [src]="getUrl()"  class="img-fluid w-100 pb-3 ">
-            
-       
-       <div class="text-center">
-            <h4>{{event.name}}</h4>
-            <h5 class="base-color" >{{event.dates.start.localDate |date}}</h5>
+
+<div class="event-container  mt-2">
+    <img [src]="getUrl()" class="img-fluid w-100  ">
+    <div class="event-details  ">
+        <div class="event-text">
+            <h6>{{event.name}} </h6>
+            <h6 class="base-color mb-0">{{event.dates.start.localDate |date}}</h6>
             <p>{{event._embedded.venues[0].name}}</p>
-           
-       </div>
-        <!-- <div class="d-flex flex-row justify-content-around ">
-            <a href="#">  <i class="fa fa-twitter fa-lg"></i></a>
-             <a href="#"> <i class="fa fa-facebook  fa-lg"></i></a>
-            <a  href="#"><i class="fa  fa-google-plus fa-lg"></i> </a>         
-
-        </div> -->
+        </div>
     </div>
 </div>

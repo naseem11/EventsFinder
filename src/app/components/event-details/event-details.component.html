@@ -1,11 +1,11 @@
 <!-- MODAL FOR GOOGLE MAP -->
 
-<div class="modal fade mt-5" [ngStyle]="{'display': mapModalIsOpen ? 'block' : 'none', 'opacity': 1}">
+<div class="modal fade m-3" [ngStyle]="{'display': mapModalIsOpen ? 'block' : 'none', 'opacity': 1}">
     <div class="modal-dialog modal-lg">
         <div class="modal-content ">
             <div class="modal-body p-0">
                 <div *ngIf="event._embedded.venues[0].location">
-                    <h4 class="modal-title pt-3 underline text-center ">{{event._embedded.venues[0].name}} ({{event._embedded.venues[0].city.name}})</h4>
+                    <h4 class="modal-title pt-5 pt-sm-3 underline text-center ">{{event._embedded.venues[0].name}} ({{event._embedded.venues[0].city.name}})</h4>
 
                     <app-agm-map [lat]="convertToNumber(event._embedded.venues[0].location?.latitude)" [lng]="convertToNumber(event._embedded.venues[0].location?.longitude)">
                     </app-agm-map>
@@ -17,7 +17,7 @@
 
             </div>
             <div class="modal-footer " align="left">
-                <button type="button" class="btn btn-orange " (click)="showMap(false)">
+                <button type="button" class="btn btn-outline-danger " (click)="showMap(false)">
                     <i class="fa fa-times fa-fw"></i> Close</button>
             </div>
         </div>
@@ -26,6 +26,7 @@
 <!-- END OF MODAL -->
 
 <div *ngIf="event">
+        
     <div class="row pb-3 mx-1 mb-1" style="background: #fff; margin-top:8rem;">
         <div class="col-md-4 d-flex flex-column ">
             <img [src]="getImgUrl()" alt="Event image" style="margin-top:-40px;">
@@ -42,7 +43,7 @@
 
 
                         <span>Venue</span> : {{event._embedded.venues[0].name}} ({{event._embedded.venues[0].city.name}})
-                        <img src="../../../assets/google-maps.png" style="width:30px;" class="mx-auto mt-1 pl-1 ">
+                        <img src="assets/google-maps.png" style="width:30px;" class="mx-auto mt-1 pl-1 ">
 
 
 
@@ -96,7 +97,7 @@
                 </li>
                 <li class="list-group-item" (click)="showMap(true)" style="cursor: pointer;">
                     <span>Venue</span> : {{event._embedded.venues[0].name}} ({{event._embedded.venues[0].city.name}})
-                    <img src="../../../assets/google-maps.png" style="width:30px;" class="ml-5">
+                    <img src="assets/google-maps.png" style="width:30px;" class="ml-5">
                 </li>
 
                 <li class="list-group-item">

@@ -7,13 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent  {
- showMenu:boolean=false;
+ showMenu = false;
 
   constructor() { }
 
-  toggleMenu(){
+  toggleMenu() {
 
-    this.showMenu=!this.showMenu;
+    this.showMenu = !this.showMenu;
   }
 
 

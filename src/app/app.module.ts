@@ -35,7 +35,7 @@ import { PagerComponent } from './components/pager/pager.component';
     AgmMapComponent,
     NotFoundComponent,
     PagerComponent
-  
+
   ],
   imports: [
     BrowserModule,
@@ -45,7 +45,7 @@ import { PagerComponent } from './components/pager/pager.component';
     AgmCoreModule.forRoot({
       apiKey: Config.googleKey
     })
-   
+
   ],
   providers: [EventService, EventDetailsResolver],
   bootstrap: [AppComponent]

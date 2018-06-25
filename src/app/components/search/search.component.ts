@@ -10,14 +10,14 @@ import { Router } from '@angular/router';
 })
 export class SearchComponent   {
   @ViewChild(NgModel) userInput: NgModel;
- 
+
   constructor(private router: Router ) { }
 
- 
+
 
   onFind() {
 
-    if(this.userInput.value){
+    if (this.userInput.value) {
     this.router.navigate(['/events', this.userInput.value])
     .catch((error) => {
 

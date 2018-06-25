@@ -30,7 +30,7 @@ export class EventService {
 
 
         if (response.status === 200) {
-          let resultJson = response.json();
+          const resultJson = response.json();
           if (resultJson['page']['totalElements'] === 0) {
             return { events: [], pages: 0 };
 
@@ -43,7 +43,7 @@ export class EventService {
           }
         } else {
 
-          throw new Error("An unexpected error occured !!");
+          throw new Error('An unexpected error occured !!');
         }
 
 
@@ -59,7 +59,7 @@ export class EventService {
 
     if (this.allEvents) {
 
-      const userSelectedEvent = this.allEvents.find((event) => { return event.id === id });
+      const userSelectedEvent = this.allEvents.find((event) => event.id === id);
       if (userSelectedEvent) {
 
         return userSelectedEvent;
@@ -85,7 +85,7 @@ export class EventService {
           }
         } else {
 
-          throw new Error("An unexpected error occured !!");
+          throw new Error('An unexpected error occured !!');
         }
 
 

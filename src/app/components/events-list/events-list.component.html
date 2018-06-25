@@ -1,5 +1,5 @@
 <div *ngIf="events">
-    <h2 class="mt-5 mb-4 pl-2 underline">{{keyword | titlecase}} Events</h2>
+    <h3 class="mt-5 mb-4 pl-2 underline">{{keyword | titlecase}} Events</h3>
     
     <div class="text-center ">
         <div class="btn-group mt-4  ">
@@ -9,9 +9,9 @@
         </div>
     </div>
    
-    <div class="row mt-5">
+    <div class="row mt-5 ">
     
-        <div *ngFor="let event of events | orderBy:sortBy" class=" col-sm-6 col-md-4 col-lg-3 ">
+        <div *ngFor="let event of events | orderBy:sortBy" class=" col-sm-6 col-md-4 col-lg-4 ">
     
     
             <app-event (click)='onSelection(event)' [event]="event"></app-event>

@@ -20,12 +20,12 @@ export class EventsListComponent implements OnInit, OnDestroy {
   sortBy = 'name';
   keyword = '';
   showMessage = false;
-  errorMessage:string='';
+  errorMessage = '';
   numberOfPages: number;
-  currentPage:number;
+  currentPage: number;
 
   private paramSubscription: Subscription;
-  private serviceSubscription: Subscription
+  private serviceSubscription: Subscription;
 
   constructor(private eventSr: EventService, private router: Router, private route: ActivatedRoute) {
 
@@ -38,7 +38,8 @@ export class EventsListComponent implements OnInit, OnDestroy {
     const urlParams = Observable.combineLatest(this.route.params, this.route.queryParams,
                                                 (params, queryParams) => ({ ...params, ...queryParams }));
     this.paramSubscription = urlParams.subscribe((routeParams: Params) => {
-      this.keyword = routeParams.keyword;
+      console.log(routeParams);
+      this.keyword = routeParams.keyword;      
       this.serviceSubscription = this.eventSr.getEvents(routeParams.keyword, routeParams.page)
         .subscribe((results: any) => {
           if (results.events.length === 0) {
@@ -49,12 +50,12 @@ export class EventsListComponent implements OnInit, OnDestroy {
 
             this.events = results.events;
             this.numberOfPages = results.pages;
-            this.currentPage=results.pageNumber;
+            this.currentPage = results.pageNumber;
           }
 
         },
           (error: Error) => {
-            this.showError('Bad request , couldn\'t find the rquested resource.' );
+            this.showError('Bad request , couldn\'t find the requested resource.' );
 
           });
 
@@ -79,10 +80,10 @@ export class EventsListComponent implements OnInit, OnDestroy {
     this.router.navigate([event.id], { relativeTo: this.route });
   }
 
-  private showError(errorText:string) {
+  private showError(errorText: string) {
 
     this.showMessage = true;
-    this.errorMessage=errorText;
+    this.errorMessage = errorText;
     setTimeout(() => {
       this.showMessage = false;
     }

@@ -1,14 +1,26 @@
-.card{
-    border:none;
-    background:#f2f2f2;
+
+.event-container{
+
+    position: relative;
+    cursor: pointer;
 }
 
+.event-details{
+    position: absolute;
+    top:0;
+    left:0;
+    height: 100%;
+    width: 100%;    
+    background:rgba(0, 0, 0, .6);
 
-.card:hover{
+}
 
-    background-color:#1b2064;
-    color:white ;
-    cursor: pointer;
+.event-text{
+
+    color:white;
+    position: absolute;
+    left:8%;
+    top:55%;
 }
 
 

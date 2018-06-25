@@ -12,28 +12,28 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class EventDetailsComponent implements OnInit {
 
-  event: any;  
-  mapModalIsOpen=false;
-  constructor(private eventSr: EventService, private route: ActivatedRoute ,private router:Router){ 
-  
+  event: any;
+  mapModalIsOpen = false;
+  constructor(private eventSr: EventService, private route: ActivatedRoute , private router: Router) {
+
   }
 
 
 
   ngOnInit( ) {
 
-   const event=this.route.snapshot.data['event'];
-        
-    if (event ){
+   const event = this.route.snapshot.data['event'];
 
-      this.event=event;
-    }else{
-      
-       
+    if (event ) {
+
+      this.event = event;
+    } else {
+
+
      this.router.navigate(['/not-found']);
-     
+
     }
-  
+
 
 }
 
@@ -57,25 +57,25 @@ convertToNumber(numberString: string): number {
 
 
 
-isOffsale():boolean{
+isOffsale(): boolean {
 
-  return (this.event.dates.status.code==='offsale')||(this.event.dates.status.code=== 'cancelled')
+  return (this.event.dates.status.code === 'offsale') || (this.event.dates.status.code === 'cancelled');
 }
 
 
-showMap(open:boolean){
- 
-  this.mapModalIsOpen=open;
+showMap(open: boolean) {
+
+  this.mapModalIsOpen = open;
 }
 
-ifExternalLinks():boolean{
+ifExternalLinks(): boolean {
 
   return (this.event._embedded.attractions && this.event._embedded.attractions[0].externalLinks);
 }
 
-ifLink(linkName:string):boolean{
+ifLink(linkName: string): boolean {
 
-  if(linkName in  this.event._embedded.attractions[0].externalLinks){
+  if (linkName in  this.event._embedded.attractions[0].externalLinks) {
 
     return true;
   }

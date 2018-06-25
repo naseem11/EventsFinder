@@ -8,12 +8,12 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 
 export const routes: Routes = [
 
-    
-    {path: '', redirectTo: 'events/upcoming', pathMatch: 'full'},    
+
+    {path: '', redirectTo: 'events/upcoming', pathMatch: 'full'},
     {path: 'events/:keyword', component: EventsListComponent},
     {path: 'events/:keyword/:id', component: EventDetailsComponent  , resolve: {event: EventDetailsResolver} },
-    {path:'**',component:NotFoundComponent}
-   
+    {path: '**', component: NotFoundComponent}
+
 ];
 
 
