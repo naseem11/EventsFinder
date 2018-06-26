@@ -18,7 +18,7 @@ export class SearchComponent   {
   onFind() {
 
     if (this.userInput.value) {
-    this.router.navigate(['/events', this.userInput.value])
+    this.router.navigate(['/events',{keyword:this.userInput.value}])
     .catch((error) => {
 
       console.log(error);

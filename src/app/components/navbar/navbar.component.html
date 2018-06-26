@@ -12,19 +12,19 @@
     <div class="collapse navbar-collapse" [class.show]="showMenu" id="appNavbar">
       <ul class="navbar-nav ml-auto" (click)="toggleMenu()" >
         <li class="nav-item pl-3">
-          <a class="nav-link" routerLink='/events/music' routerLinkActive="active">
+          <a class="nav-link" [routerLink]= "['/events',{keyword:'music'}]" [class.active]="isActive('/events;keyword=music')">
             <i class="orange fa fa-music"></i> Music </a>
         </li>
         <li class="nav-item pl-3">
-          <a class="nav-link" routerLink='/events/sports' routerLinkActive="active">
+          <a class="nav-link" [routerLink]= "['/events',{keyword:'sports'}]" [class.active]="isActive('/events;keyword=sports')">
             <i class="orange fa fa-futbol-o"></i> Sports</a>
         </li>
         <li class="nav-item pl-3">
-          <a class="nav-link " routerLink='/events/arts&theater' routerLinkActive="active">
+          <a class="nav-link " [routerLink]= "['/events',{keyword:'arts'}]" [class.active]="isActive('/events;keyword=arts')">
             <i class="orange fa fa-smile-o"></i> Arts & Theatre</a>
         </li>
         <li class="nav-item pl-3">
-          <a class="nav-link " routerLink='/events/family' routerLinkActive="active">
+          <a class="nav-link " [routerLink]= "['/events',{keyword:'family'}]" [class.active]="isActive('/events;keyword=family')">
             <i class="orange fa fa-users"></i> Family</a>
         </li>
 

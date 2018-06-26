@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { EventService } from '../../services/event.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 
 
@@ -14,7 +14,7 @@ export class EventDetailsComponent implements OnInit {
 
   event: any;
   mapModalIsOpen = false;
-  constructor(private eventSr: EventService, private route: ActivatedRoute , private router: Router) {
+  constructor(private location:Location, private route: ActivatedRoute , private router: Router) {
 
   }
 
@@ -81,5 +81,10 @@ ifLink(linkName: string): boolean {
   }
 }
 
+goBack():void{
+
+  this.location.back();
+
+}
 }
 

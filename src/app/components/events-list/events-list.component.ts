@@ -1,9 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { EventService } from '../../services/event.service';
 import { Subscription } from 'rxjs/Subscription';
-import { Router, ActivatedRoute, Params } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/combineLatest';
+import { Router, ActivatedRoute } from '@angular/router';
+
+
 
 
 
@@ -17,17 +16,15 @@ export class EventsListComponent implements OnInit, OnDestroy {
 
 
   events: any[];
-  sortBy = 'name';
+  sortBy = 'date';
   keyword = '';
   showMessage = false;
   errorMessage = '';
   numberOfPages: number;
   currentPage: number;
-
-  private paramSubscription: Subscription;
   private serviceSubscription: Subscription;
 
-  constructor(private eventSr: EventService, private router: Router, private route: ActivatedRoute) {
+  constructor(private router: Router, private route: ActivatedRoute) {
 
   }
 
@@ -35,33 +32,27 @@ export class EventsListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    const urlParams = Observable.combineLatest(this.route.params, this.route.queryParams,
-                                                (params, queryParams) => ({ ...params, ...queryParams }));
-    this.paramSubscription = urlParams.subscribe((routeParams: Params) => {
-      console.log(routeParams);
-      this.keyword = routeParams.keyword;      
-      this.serviceSubscription = this.eventSr.getEvents(routeParams.keyword, routeParams.page)
-        .subscribe((results: any) => {
-          if (results.events.length === 0) {
 
-            this.events = null;
-            this.showError('Sorry ! no results to show, Please check your search term.');
-          } else {
+    this.serviceSubscription = this.route.data.subscribe((data: any) => {
+      let results = data['results'];
+      this.keyword = this.route.snapshot.params['keyword'];
+      if (results.events.length === 0) {
+        this.events = null;
+        this.showError('Sorry ! no results to show, Please check your search term.');
+      } else {
 
-            this.events = results.events;
-            this.numberOfPages = results.pages;
-            this.currentPage = results.pageNumber;
-          }
+        this.events = results.events;
+        this.numberOfPages = results.pages;
+        this.currentPage = results.pageNumber;
+      }
 
-        },
-          (error: Error) => {
-            this.showError('Bad request , couldn\'t find the requested resource.' );
+    },
+      (error: Error) => {
+        this.showError('Bad request , couldn\'t find the requested resource.');
 
-          });
+      });
 
 
-
-    });
 
   }
 
@@ -69,15 +60,14 @@ export class EventsListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
 
-    this.paramSubscription.unsubscribe();
+
     this.serviceSubscription.unsubscribe();
 
   }
 
   onSelection(event: any) {
-
-    console.log(event);
-    this.router.navigate([event.id], { relativeTo: this.route });
+       
+    this.router.navigate(['events', event.id]);
   }
 
   private showError(errorText: string) {
@@ -91,9 +81,15 @@ export class EventsListComponent implements OnInit, OnDestroy {
   }
 
   loadPage(pageNumber: number) {
+    window.scroll(0,0);
+    this.router.navigate(['/events', { keyword: this.route.snapshot.params['keyword'], page: pageNumber }]);
 
-    this.router.navigate(['.'], { relativeTo: this.route, queryParams: { page: pageNumber } });
+   
+
+
   }
 
+
+  
 
 }

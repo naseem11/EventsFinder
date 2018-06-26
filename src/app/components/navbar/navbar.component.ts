@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -9,7 +10,7 @@ import { Component } from '@angular/core';
 export class NavbarComponent  {
  showMenu = false;
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   toggleMenu() {
 
@@ -17,4 +18,8 @@ export class NavbarComponent  {
   }
 
 
+  isActive(url:string):boolean{
+
+    return this.router.url.includes(url);
+  }
 }

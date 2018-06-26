@@ -5,7 +5,7 @@
         <div class="modal-content ">
             <div class="modal-body p-0">
                 <div *ngIf="event._embedded.venues[0].location">
-                    <h4 class="modal-title pt-5 pt-sm-3 underline text-center ">{{event._embedded.venues[0].name}} ({{event._embedded.venues[0].city.name}})</h4>
+                    <h5 class="modal-title pt-5 pt-sm-3  underline bg-primary text-center text-white ">{{event._embedded.venues[0].name}} ({{event._embedded.venues[0].city.name}})</h5>
 
                     <app-agm-map [lat]="convertToNumber(event._embedded.venues[0].location?.latitude)" [lng]="convertToNumber(event._embedded.venues[0].location?.longitude)">
                     </app-agm-map>
@@ -26,8 +26,14 @@
 <!-- END OF MODAL -->
 
 <div *ngIf="event">
-        
-    <div class="row pb-3 mx-1 mb-1" style="background: #fff; margin-top:8rem;">
+    <!-- Back Button -->
+    <div class="clearfix mb-5 mb-md-3 mr-3" style=" margin-top:8rem;">
+        <button type="button " (click)="goBack()"class="btn btn-sm btn-primary float-right">
+            <i class="fa fa-arrow-left"> </i>
+            Go Back</button>
+    </div>
+
+    <div class="row pb-3 mx-1 mb-1 bg-white">
         <div class="col-md-4 d-flex flex-column ">
             <img [src]="getImgUrl()" alt="Event image" style="margin-top:-40px;">
 
@@ -40,15 +46,9 @@
                         <p class="lead mt-2">{{event.dates.start.dateTime |date:'shortTime'}}</p>
                     </li>
                     <li class="list-group-item" (click)="showMap(true)" style="cursor: pointer;">
-
-
                         <span>Venue</span> : {{event._embedded.venues[0].name}} ({{event._embedded.venues[0].city.name}})
                         <img src="assets/google-maps.png" style="width:30px;" class="mx-auto mt-1 pl-1 ">
-
-
-
                     </li>
-
                     <li class="list-group-item">
                         <span>Address</span> : {{event._embedded.venues[0].address.line1}}</li>
                     <li class="list-group-item">

@@ -13,12 +13,13 @@ import { EventService } from './services/event.service';
 import { EventDetailsComponent } from './components/event-details/event-details.component';
 import {routes} from './routes';
 import { OrderBy } from '../shared/orderby.pipe';
-import { EventDetailsResolver } from './services/eventDetailsResolver.sevice';
+import { EventResolver } from './services/event-resolver.service';
 import { AgmMapComponent } from './components/agm-map/agm-map.component';
 import {AgmCoreModule} from '@agm/core';
 import { Config } from '../shared/config';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { PagerComponent } from './components/pager/pager.component';
+import { EventsResolver } from './services/events-resolver.service';
 
 
 
@@ -47,7 +48,7 @@ import { PagerComponent } from './components/pager/pager.component';
     })
 
   ],
-  providers: [EventService, EventDetailsResolver],
+  providers: [EventService, EventResolver,EventsResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

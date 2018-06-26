@@ -1,5 +1,5 @@
 .navbar{
-    background-color:#151841;
+    background-color:#09105f;
     
 }
 
@@ -21,6 +21,28 @@
     font-size:1.2rem;
    
 }
+
+.nav-link {
+    position: relative;
+  }
+  
+  .nav-link:after {
+    content: '';
+    position: absolute;
+    margin-top:.5rem;    
+    left: 0;
+    right: 0;
+    display: block;
+    height: 1px;
+    opacity: 0;
+    background: orange;
+  }
+  
+  .nav-link:hover:after,
+  .nav-link:active:after {
+    opacity: 1;
+  }
+
 a.nav-link{
 
    font-weight: 300 !important;
