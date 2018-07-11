@@ -1,27 +1,22 @@
 # EventsFinder
+An Angular app to find events in various categories like music , sport , art & theatre etc , using Ticketmaster API.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.4.
+### [Visit  this application here](https://naseem11.github.io/events-finder/)
 
-## Development server
+![userfinder](https://user-images.githubusercontent.com/22799847/42477378-c14fbd82-83c8-11e8-960b-60feabb76d12.PNG)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Searching User Profile
+Any user profile can be searched simlply by specifying the username in the search box.
 
-## Code scaffolding
+![userfinder1](https://user-images.githubusercontent.com/22799847/42477668-e2dfd2ce-83c9-11e8-8174-d4b7dd1ed55f.PNG)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Technologies Used
 
-## Build
+**Languages :**  HTML , CSS , JavaScript
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+**Frameworks :** Bootstrap 
 
-## Running unit tests
+**API :** Github API.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+**Hosting :** Firebase
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
