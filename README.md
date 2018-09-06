@@ -1,7 +1,7 @@
 # EventsFinder
 An Angular app to find events in various categories like music , sport , art & theatre etc , using Ticketmaster API. 
 
-### [Visit  this application here](https://naseem11.github.io/events-finder/)
+### [Visit  this application here..](https://naseem11.github.io/events-finder/)
 
 
 ![eventfinder1](https://user-images.githubusercontent.com/22799847/42602807-1393f220-8563-11e8-8104-d75c7845b52c.PNG)
